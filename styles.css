@@ -545,6 +545,103 @@ section {
 }
 
 /* -------------------------------------------------------------------------
+   Legal documents (disclaimer / privacy / terms long-form pages)
+   ------------------------------------------------------------------------- */
+
+.legal-doc {
+  padding-top: var(--s-7);
+  padding-bottom: var(--s-8);
+}
+.legal-doc .container { max-width: 760px; }
+
+.legal-doc h1 {
+  font-size: clamp(32px, 4vw, 44px);
+  margin-top: var(--s-3);
+  margin-bottom: var(--s-3);
+}
+.legal-doc h2 {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-top: var(--s-6);
+  margin-bottom: var(--s-3);
+}
+.legal-doc h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-top: var(--s-5);
+  margin-bottom: var(--s-2);
+}
+.legal-doc p {
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--text-secondary);
+  margin-bottom: var(--s-3);
+}
+.legal-doc .lede {
+  font-size: 18px;
+  color: var(--text-primary);
+  margin-top: var(--s-3);
+  margin-bottom: var(--s-5);
+}
+.legal-doc ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--s-3) 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.legal-doc li {
+  position: relative;
+  padding-left: var(--s-3);
+  color: var(--text-secondary);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.legal-doc li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: var(--text-tertiary);
+}
+.legal-doc hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: var(--s-6) 0 var(--s-4);
+}
+.legal-doc .legal-meta {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  margin: 0 0 var(--s-1) 0;
+}
+.legal-doc .legal-meta + .legal-meta { margin-bottom: var(--s-5); }
+
+.legal-doc .draft-banner {
+  background: rgba(139, 107, 255, 0.08);
+  border: 1px solid rgba(139, 107, 255, 0.3);
+  border-radius: var(--radius-card);
+  padding: var(--s-3) var(--s-4);
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: var(--s-3) 0 var(--s-5);
+}
+.legal-doc .draft-banner strong { color: var(--accent-bright); }
+
+.back-link {
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin: 0 0 var(--s-4) 0;
+}
+.back-link:hover { color: var(--text-primary); }
+.legal-doc .back-link + h1 { margin-top: 0; }
+.legal-doc .back-link.bottom { margin-top: var(--s-5); margin-bottom: 0; }
+
+/* -------------------------------------------------------------------------
    Responsive — tablet (640+) and desktop (1024+)
    ------------------------------------------------------------------------- */
 
