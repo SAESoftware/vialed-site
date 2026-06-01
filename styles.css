@@ -1,0 +1,609 @@
+/* =========================================================================
+   Vialed marketing site — single stylesheet.
+   Design system mirrors the iOS app's dark mode: pure black background,
+   elevated surfaces, AccentColor purple, SF Pro, generous radii.
+   ========================================================================= */
+
+:root {
+  /* Surfaces */
+  --bg-primary: #000000;
+  --bg-elevated: #1C1C1E;
+  --bg-elevated-2: #2C2C2E;
+
+  /* Brand */
+  --accent: #534AB7;
+  --accent-bright: #8B6BFF;
+
+  /* Text */
+  --text-primary: #FFFFFF;
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-tertiary: rgba(255, 255, 255, 0.5);
+
+  /* Lines */
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.16);
+
+  /* Radii — match iOS app */
+  --radius-card: 14px;
+  --radius-chip: 8px;
+  --radius-modal: 12px;
+
+  /* Spacing scale (4, 8, 16, 24, 32, 48, 64, 96) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 16px;
+  --s-4: 24px;
+  --s-5: 32px;
+  --s-6: 48px;
+  --s-7: 64px;
+  --s-8: 96px;
+
+  /* Layout */
+  --max-w: 1200px;
+  --gutter: 24px;
+}
+
+/* -------------------------------------------------------------------------
+   Reset / base
+   ------------------------------------------------------------------------- */
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  background: var(--bg-primary);
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
+  font-weight: 400;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+img, svg { display: block; max-width: 100%; height: auto; }
+
+a {
+  color: var(--accent-bright);
+  text-decoration: none;
+  transition: color 120ms ease;
+}
+a:hover { color: var(--text-primary); }
+
+h1, h2, h3, h4 {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: 0 0 var(--s-3) 0;
+  color: var(--text-primary);
+}
+h1 { font-size: clamp(36px, 5.5vw, 64px); line-height: 1.05; letter-spacing: -0.03em; }
+h2 { font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; }
+h3 { font-size: clamp(20px, 2vw, 24px); line-height: 1.25; font-weight: 600; }
+
+p { margin: 0 0 var(--s-3) 0; color: var(--text-secondary); }
+p:last-child { margin-bottom: 0; }
+
+/* -------------------------------------------------------------------------
+   Layout primitives
+   ------------------------------------------------------------------------- */
+
+.container {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding-left: var(--gutter);
+  padding-right: var(--gutter);
+}
+
+section {
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-8);
+  position: relative;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent-bright);
+  margin-bottom: var(--s-3);
+}
+
+/* -------------------------------------------------------------------------
+   Header / nav
+   ------------------------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--s-3);
+  padding-bottom: var(--s-3);
+}
+
+.site-header .brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: 18px;
+  letter-spacing: -0.01em;
+}
+.site-header .brand img { width: 28px; height: 28px; border-radius: 6px; }
+.site-header nav a {
+  color: var(--text-secondary);
+  margin-left: var(--s-4);
+  font-size: 15px;
+  font-weight: 500;
+}
+.site-header nav a:hover { color: var(--text-primary); }
+
+/* -------------------------------------------------------------------------
+   Buttons / App Store badge
+   ------------------------------------------------------------------------- */
+
+.app-store-badge {
+  display: inline-block;
+  /* The badge SVG already has its own black background per Apple guidelines.
+     We just give it a stable height; width auto-scales. */
+  height: 56px;
+  transition: transform 150ms ease, filter 150ms ease;
+}
+.app-store-badge:hover {
+  transform: translateY(-1px);
+  filter: drop-shadow(0 0 12px rgba(139, 107, 255, 0.35));
+}
+.app-store-badge img, .app-store-badge svg { height: 100%; width: auto; display: block; }
+
+/* -------------------------------------------------------------------------
+   Hero
+   ------------------------------------------------------------------------- */
+
+.hero {
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-8);
+  overflow: hidden; /* contain the glow */
+}
+
+/* Soft purple glow behind hero — echoes the app icon's neon V */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: -200px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1100px, 110%);
+  height: 700px;
+  background: radial-gradient(ellipse at center,
+              rgba(139, 107, 255, 0.28) 0%,
+              rgba(83, 74, 183, 0.12) 30%,
+              transparent 65%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-7);
+  align-items: center;
+}
+
+.hero-copy h1 { margin-bottom: var(--s-4); }
+.hero-copy .subhead {
+  font-size: clamp(17px, 1.6vw, 20px);
+  color: var(--text-secondary);
+  max-width: 56ch;
+  margin-bottom: var(--s-6);
+}
+
+.hero-visual {
+  display: flex;
+  justify-content: center;
+}
+
+/* -------------------------------------------------------------------------
+   Phone-shaped screenshot placeholder
+   Aspect ratio 9:19.5 (iPhone). Dimensions hold steady so swapping a real
+   PNG in later doesn't shift layout.
+   ------------------------------------------------------------------------- */
+
+.phone-shot {
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 9 / 19.5;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 36px; /* iPhone-ish radius for the mockup */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 14px;
+  padding: var(--s-4);
+  position: relative;
+  overflow: hidden;
+}
+
+.phone-shot::after {
+  /* subtle inner highlight, gives the placeholder a hint of glass */
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 30%);
+  pointer-events: none;
+}
+
+.hero .phone-shot { max-width: 300px; }
+
+/* -------------------------------------------------------------------------
+   Problem / Solution section
+   ------------------------------------------------------------------------- */
+
+.prose-section .container { max-width: 760px; }
+.prose-section h2 { margin-bottom: var(--s-5); }
+.prose-section p {
+  font-size: 18px;
+  margin-bottom: var(--s-4);
+}
+
+/* -------------------------------------------------------------------------
+   Features — alternating image/text rows
+   ------------------------------------------------------------------------- */
+
+.features { padding-bottom: var(--s-7); }
+
+.feature {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-6);
+  align-items: center;
+  padding: var(--s-7) 0;
+  border-top: 1px solid var(--border);
+}
+.feature:first-child { border-top: none; padding-top: var(--s-5); }
+
+.feature-copy .feature-number {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--accent-bright);
+  text-transform: uppercase;
+  margin-bottom: var(--s-2);
+}
+.feature-copy h3 {
+  font-size: clamp(24px, 2.6vw, 30px);
+  margin-bottom: var(--s-3);
+  letter-spacing: -0.02em;
+}
+.feature-copy p {
+  font-size: 17px;
+  max-width: 52ch;
+}
+
+.feature-visual { display: flex; justify-content: center; }
+
+/* -------------------------------------------------------------------------
+   Pricing
+   ------------------------------------------------------------------------- */
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
+  max-width: 880px;
+  margin: var(--s-6) auto 0;
+}
+
+.price-card {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--s-6);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.price-card.featured {
+  border-color: rgba(139, 107, 255, 0.5);
+  background: linear-gradient(180deg, rgba(139, 107, 255, 0.06) 0%, var(--bg-elevated) 100%);
+  box-shadow: 0 0 0 1px rgba(139, 107, 255, 0.15), 0 20px 60px -20px rgba(139, 107, 255, 0.25);
+}
+
+.price-card .recommended-pill {
+  position: absolute;
+  top: -12px;
+  left: var(--s-6);
+  background: var(--accent);
+  color: white;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border-radius: 999px;
+}
+
+.price-card h3 {
+  font-size: 22px;
+  margin-bottom: var(--s-2);
+}
+
+.price-card .price {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin: var(--s-2) 0 var(--s-1);
+  color: var(--text-primary);
+}
+.price-card .price small {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.price-card .price-sub {
+  color: var(--text-tertiary);
+  font-size: 14px;
+  margin-bottom: var(--s-5);
+}
+
+.price-card ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+}
+.price-card li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-2);
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+.price-card li::before {
+  content: "";
+  flex: 0 0 18px;
+  height: 18px;
+  margin-top: 4px;
+  background: var(--accent-bright);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5 L6.5 12 L13 4.5' stroke='black' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5 L6.5 12 L13 4.5' stroke='black' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
+}
+
+/* -------------------------------------------------------------------------
+   FAQ
+   ------------------------------------------------------------------------- */
+
+.faq-list {
+  max-width: 800px;
+  margin: var(--s-6) auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.faq-item {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--s-5);
+}
+.faq-item h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: var(--s-2);
+}
+.faq-item p {
+  font-size: 16px;
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------------
+   Final CTA
+   ------------------------------------------------------------------------- */
+
+.final-cta {
+  text-align: center;
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-8);
+  position: relative;
+  overflow: hidden;
+}
+.final-cta::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 400px;
+  background: radial-gradient(ellipse at center, rgba(139, 107, 255, 0.18) 0%, transparent 60%);
+  filter: blur(30px);
+  pointer-events: none;
+  z-index: 0;
+}
+.final-cta .container { position: relative; z-index: 1; }
+.final-cta h2 { margin-bottom: var(--s-5); }
+
+/* -------------------------------------------------------------------------
+   Section headings (centered variants)
+   ------------------------------------------------------------------------- */
+
+.section-heading {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+.section-heading + .pricing-grid,
+.section-heading + .faq-list { margin-top: var(--s-6); }
+
+/* -------------------------------------------------------------------------
+   Footer + disclaimer
+   ------------------------------------------------------------------------- */
+
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: var(--s-6) 0 var(--s-5);
+  margin-top: var(--s-7);
+}
+.site-footer .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.footer-brand {
+  display: flex;
+  align-items: center;
+  gap: var(--s-2);
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+.footer-brand img { width: 24px; height: 24px; border-radius: 5px; }
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+  font-size: 14px;
+}
+.footer-links a { color: var(--text-secondary); }
+.footer-links a:hover { color: var(--text-primary); }
+.footer-links .sep { color: var(--text-tertiary); }
+
+.footer-copyright {
+  border-top: 1px solid var(--border);
+  padding: var(--s-3) 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.medical-disclaimer {
+  padding: var(--s-4) 0 var(--s-6);
+  text-align: center;
+}
+.medical-disclaimer p {
+  max-width: 920px;
+  margin: 0 auto;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text-tertiary);
+}
+
+/* -------------------------------------------------------------------------
+   Stub pages (privacy / terms / support)
+   ------------------------------------------------------------------------- */
+
+.stub-page {
+  min-height: 50vh;
+  padding-top: var(--s-8);
+  padding-bottom: var(--s-8);
+}
+.stub-page h1 { margin-bottom: var(--s-4); }
+.stub-page .stub-body {
+  color: var(--text-secondary);
+  font-size: 17px;
+  max-width: 640px;
+}
+.stub-page .contact-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-4) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-2);
+  font-size: 17px;
+}
+
+/* -------------------------------------------------------------------------
+   Responsive — tablet (640+) and desktop (1024+)
+   ------------------------------------------------------------------------- */
+
+@media (min-width: 640px) {
+  body { font-size: 18px; }
+
+  .hero .container { gap: var(--s-8); }
+  .hero-copy .subhead { font-size: 20px; }
+
+  .pricing-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-5);
+  }
+
+  .site-footer .container {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1024px) {
+  :root { --gutter: 32px; }
+
+  .hero .container {
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: var(--s-8);
+  }
+  .hero .phone-shot { max-width: 340px; }
+
+  .feature {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--s-8);
+    padding: var(--s-8) 0;
+  }
+  /* Alternate image side on every other feature */
+  .feature.reverse .feature-visual { order: -1; }
+
+  .feature .phone-shot { max-width: 300px; }
+}
+
+/* -------------------------------------------------------------------------
+   Reduced motion respect
+   ------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* -------------------------------------------------------------------------
+   Focus states — visible for keyboard nav
+   ------------------------------------------------------------------------- */
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent-bright);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
