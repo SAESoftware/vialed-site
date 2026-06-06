@@ -260,6 +260,22 @@ section {
 
 .hero .phone-shot { max-width: 300px; }
 
+/* Real screenshots reuse the phone-shot frame — fill it edge to edge. */
+img.phone-shot {
+  display: block;
+  object-fit: cover;
+  padding: 0;
+  height: auto;
+}
+
+/* Text-only privacy reassurance under the hero CTA */
+.hero-privacy {
+  margin-top: var(--s-5);
+  max-width: 52ch;
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+
 /* -------------------------------------------------------------------------
    Problem / Solution section
    ------------------------------------------------------------------------- */
@@ -303,6 +319,19 @@ section {
 .feature-copy p {
   font-size: 17px;
   max-width: 52ch;
+}
+.feature-premium {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: white;
+  background: var(--accent);
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-left: 6px;
 }
 
 .feature-visual { display: flex; justify-content: center; }
@@ -388,6 +417,28 @@ section {
   color: var(--text-secondary);
   font-size: 16px;
 }
+/* "Everything in Free, plus:" — a summary line, not a feature. Bold, with a
+   + glyph instead of the checkmark, and a divider to set it apart. */
+.price-card li.price-summary {
+  color: var(--text-primary);
+  font-weight: 700;
+  padding-bottom: var(--s-2);
+  margin-bottom: var(--s-1);
+  border-bottom: 1px solid var(--border);
+}
+.price-card li.price-summary::before {
+  content: "+";
+  background: none;
+  -webkit-mask: none;
+          mask: none;
+  color: var(--accent-bright);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1;
+  margin-top: 0;
+  text-align: center;
+}
+
 .price-card li::before {
   content: "";
   flex: 0 0 18px;
