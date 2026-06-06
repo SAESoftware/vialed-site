@@ -268,13 +268,6 @@ img.phone-shot {
   height: auto;
 }
 
-/* Text-only privacy reassurance under the hero CTA */
-.hero-privacy {
-  margin-top: var(--s-5);
-  max-width: 52ch;
-  font-size: 14px;
-  color: var(--text-tertiary);
-}
 
 /* -------------------------------------------------------------------------
    Problem / Solution section
@@ -334,7 +327,43 @@ img.phone-shot {
   margin-left: 6px;
 }
 
+/* Small inline qualifier under feature copy (e.g. free-tier limit) */
+.feature-note {
+  margin-top: var(--s-3);
+  font-size: 14px;
+  color: var(--text-tertiary);
+}
+
 .feature-visual { display: flex; justify-content: center; }
+
+/* -------------------------------------------------------------------------
+   Privacy band — a quiet, centered chapter break between features and pricing
+   ------------------------------------------------------------------------- */
+
+.privacy-band {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.privacy-band .container {
+  max-width: 600px;
+  text-align: center;
+  padding-top: var(--s-7);
+  padding-bottom: var(--s-7);
+}
+.privacy-band .privacy-icon {
+  display: block;
+  margin: 0 auto var(--s-3);
+  color: var(--accent-bright);
+}
+.privacy-band h2 {
+  margin-bottom: var(--s-3);
+}
+.privacy-band p {
+  color: var(--text-secondary);
+  font-size: 17px;
+  max-width: 48ch;
+  margin: 0 auto;
+}
 
 /* -------------------------------------------------------------------------
    Pricing
