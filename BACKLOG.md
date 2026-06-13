@@ -5,12 +5,12 @@ itself (which has its own backlog at `~/peptide-app/BACKLOG.md`).
 
 ## Launch-day TODO
 
-**Replace the App Store URL placeholder.** Hero and final-CTA both link
-to `https://apps.apple.com/app/vialed/idTBD`. Find-and-replace `idTBD`
-across all HTML files with the real Apple-assigned app ID once the app
-is approved. The badge SVG also needs to be swapped from
-`assets/app-store-badge.svg` (placeholder) to Apple's official
-downloadable SVG at the same filename.
+**Replace the App Store URL placeholder.** ~~Hero and final-CTA both
+link to the App Store URL placeholder.~~ Done — both badge links now
+use the live App ID `id6769218409`
+(`https://apps.apple.com/app/vialed/id6769218409`). The badge SVG still
+needs to be swapped from `assets/app-store-badge.svg` (placeholder) to
+Apple's official downloadable SVG at the same filename.
 
 ## Privacy and terms — post-launch migration
 
