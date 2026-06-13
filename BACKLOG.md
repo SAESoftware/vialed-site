@@ -8,9 +8,9 @@ itself (which has its own backlog at `~/peptide-app/BACKLOG.md`).
 **Replace the App Store URL placeholder.** ~~Hero and final-CTA both
 link to the App Store URL placeholder.~~ Done — both badge links now
 use the live App ID `id6769218409`
-(`https://apps.apple.com/app/vialed/id6769218409`). The badge SVG still
-needs to be swapped from `assets/app-store-badge.svg` (placeholder) to
-Apple's official downloadable SVG at the same filename.
+(`https://apps.apple.com/app/vialed/id6769218409`). The badge SVG has
+also been swapped from the placeholder to Apple's official "Download on
+the App Store" SVG at `assets/app-store-badge.svg`. ✅ Complete.
 
 ## Privacy and terms — post-launch migration
 

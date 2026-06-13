@@ -35,9 +35,10 @@ across those four files.
 
 ## App Store badge
 
-`app-store-badge.svg` is a placeholder. Download the official badge from
-<https://developer.apple.com/app-store/marketing/guidelines/> and overwrite
-the file with the same name — no HTML changes needed.
+`app-store-badge.svg` is Apple's official "Download on the App Store"
+badge (US/UK English, black), sourced from
+<https://developer.apple.com/app-store/marketing/guidelines/>. To refresh
+it, overwrite the file with the same name — no HTML changes needed.
 
 ## Screenshots
 
