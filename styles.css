@@ -1,27 +1,32 @@
 /* =========================================================================
    Vialed marketing site — single stylesheet.
-   Design system mirrors the iOS app's dark mode: pure black background,
-   elevated surfaces, AccentColor purple, SF Pro, generous radii.
+   Direction A: warm off-white base, indigo ink, electric-violet accents,
+   dark phone mockups that pop, one full-bleed indigo privacy panel.
+   Palette tokens: indigo #120A22, electric violet #8255F2, glow #A24BFF.
    ========================================================================= */
 
 :root {
-  /* Surfaces */
-  --bg-primary: #000000;
-  --bg-elevated: #1C1C1E;
-  --bg-elevated-2: #2C2C2E;
+  /* Surfaces — warm light base */
+  --bg-primary: #FAF8F5;     /* warm off-white page */
+  --bg-warm-2: #F2ECE4;      /* slightly deeper warm band */
+  --bg-elevated: #FFFFFF;    /* cards */
+  --bg-elevated-2: #F6F1EA;
 
   /* Brand */
-  --accent: #534AB7;
-  --accent-bright: #8B6BFF;
+  --indigo: #120A22;         /* headings + dark panel */
+  --accent: #8255F2;         /* electric violet — links, eyebrows, pills */
+  --accent-deep: #6B3FE0;    /* darker violet for hover / contrast */
+  --accent-bright: #8255F2;  /* legacy alias (used by support.html inline styles) */
+  --glow: #A24BFF;           /* magenta-violet glow — decorative only */
 
-  /* Text */
-  --text-primary: #FFFFFF;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --text-tertiary: rgba(255, 255, 255, 0.5);
+  /* Text — indigo ink on warm base */
+  --text-primary: #120A22;
+  --text-secondary: rgba(18, 10, 34, 0.66);
+  --text-tertiary: rgba(18, 10, 34, 0.48);
 
   /* Lines */
-  --border: rgba(255, 255, 255, 0.08);
-  --border-strong: rgba(255, 255, 255, 0.16);
+  --border: rgba(18, 10, 34, 0.10);
+  --border-strong: rgba(18, 10, 34, 0.18);
 
   /* Radii — match iOS app */
   --radius-card: 14px;
@@ -51,7 +56,7 @@
 
 html {
   background: var(--bg-primary);
-  color-scheme: dark;
+  color-scheme: light;
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
@@ -71,11 +76,11 @@ body {
 img, svg { display: block; max-width: 100%; height: auto; }
 
 a {
-  color: var(--accent-bright);
+  color: var(--accent-deep);
   text-decoration: none;
   transition: color 120ms ease;
 }
-a:hover { color: var(--text-primary); }
+a:hover { color: var(--indigo); }
 
 h1, h2, h3, h4 {
   font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", system-ui, sans-serif;
@@ -84,9 +89,11 @@ h1, h2, h3, h4 {
   margin: 0 0 var(--s-3) 0;
   color: var(--text-primary);
 }
-h1 { font-size: clamp(36px, 5.5vw, 64px); line-height: 1.05; letter-spacing: -0.03em; }
+h1 { font-size: clamp(34px, 5.6vw, 66px); line-height: 1.04; letter-spacing: -0.03em; }
 h2 { font-size: clamp(28px, 3.6vw, 42px); line-height: 1.1; }
 h3 { font-size: clamp(20px, 2vw, 24px); line-height: 1.25; font-weight: 600; }
+
+.accent { color: var(--accent); }
 
 p { margin: 0 0 var(--s-3) 0; color: var(--text-secondary); }
 p:last-child { margin-bottom: 0; }
@@ -114,7 +121,7 @@ section {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent-bright);
+  color: var(--accent);
   margin-bottom: var(--s-3);
 }
 
@@ -126,7 +133,7 @@ section {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(250, 248, 245, 0.78);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border-bottom: 1px solid var(--border);
@@ -149,6 +156,7 @@ section {
   font-size: 18px;
   letter-spacing: -0.01em;
 }
+.site-header .brand:hover { color: var(--text-primary); }
 .site-header .brand img { width: 28px; height: 28px; border-radius: 6px; }
 .site-header nav a {
   color: var(--text-secondary);
@@ -156,49 +164,81 @@ section {
   font-size: 15px;
   font-weight: 500;
 }
-.site-header nav a:hover { color: var(--text-primary); }
+.site-header nav a:hover { color: var(--indigo); }
 
 /* -------------------------------------------------------------------------
-   Buttons / App Store badge
+   Buttons / App Store badge / CTAs
    ------------------------------------------------------------------------- */
 
 .app-store-badge {
   display: inline-block;
-  /* The badge SVG already has its own black background per Apple guidelines.
-     We just give it a stable height; width auto-scales. */
+  /* Apple's badge SVG carries its own black background per guidelines. */
   height: 56px;
   transition: transform 150ms ease, filter 150ms ease;
 }
 .app-store-badge:hover {
   transform: translateY(-1px);
-  filter: drop-shadow(0 0 12px rgba(139, 107, 255, 0.35));
+  filter: drop-shadow(0 6px 16px rgba(130, 85, 242, 0.35));
 }
 .app-store-badge img, .app-store-badge svg { height: 100%; width: auto; display: block; }
+
+.cta-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--s-4);
+}
+
+.cta-secondary {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--accent-deep);
+}
+.cta-secondary:hover { color: var(--indigo); }
+
+/* Trust chips under the hero CTAs */
+.trust-chips {
+  list-style: none;
+  padding: 0;
+  margin: var(--s-5) 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s-2);
+}
+.trust-chips li {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
 
 /* -------------------------------------------------------------------------
    Hero
    ------------------------------------------------------------------------- */
 
 .hero {
-  padding-top: var(--s-8);
+  padding-top: var(--s-7);
   padding-bottom: var(--s-8);
   overflow: hidden; /* contain the glow */
 }
 
-/* Soft purple glow behind hero — echoes the app icon's neon V */
+/* Soft violet glow behind hero — echoes the app icon's neon V */
 .hero::before {
   content: "";
   position: absolute;
-  top: -200px;
+  top: -260px;
   left: 50%;
   transform: translateX(-50%);
-  width: min(1100px, 110%);
-  height: 700px;
+  width: min(1100px, 120%);
+  height: 720px;
   background: radial-gradient(ellipse at center,
-              rgba(139, 107, 255, 0.28) 0%,
-              rgba(83, 74, 183, 0.12) 30%,
-              transparent 65%);
-  filter: blur(40px);
+              rgba(162, 75, 255, 0.20) 0%,
+              rgba(130, 85, 242, 0.10) 32%,
+              transparent 64%);
+  filter: blur(50px);
   pointer-events: none;
   z-index: 0;
 }
@@ -226,59 +266,48 @@ section {
 }
 
 /* -------------------------------------------------------------------------
-   Phone-shaped screenshot placeholder
-   Aspect ratio 9:19.5 (iPhone). Dimensions hold steady so swapping a real
-   PNG in later doesn't shift layout.
+   Phone screenshots — dark app screens framed to pop on the warm base.
+   Aspect ratio 9:19.5 (iPhone). Dimensions hold steady so the layout is
+   reserved even before images load.
    ------------------------------------------------------------------------- */
 
 .phone-shot {
   width: 100%;
   max-width: 320px;
   aspect-ratio: 9 / 19.5;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border);
-  border-radius: 36px; /* iPhone-ish radius for the mockup */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 14px;
-  padding: var(--s-4);
-  position: relative;
-  overflow: hidden;
-}
-
-.phone-shot::after {
-  /* subtle inner highlight, gives the placeholder a hint of glass */
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 30%);
-  pointer-events: none;
 }
 
 .hero .phone-shot { max-width: 300px; }
 
-/* Real screenshots reuse the phone-shot frame — fill it edge to edge. */
+/* Real screenshots: dark bezel + soft lift against the light page. */
 img.phone-shot {
   display: block;
   object-fit: cover;
-  padding: 0;
-  height: auto;
+  border: 7px solid var(--indigo);
+  border-radius: 42px;
+  background: var(--indigo);
+  box-shadow: 0 34px 70px -30px rgba(18, 10, 34, 0.55),
+              0 0 0 1px rgba(18, 10, 34, 0.06);
 }
-
 
 /* -------------------------------------------------------------------------
-   Problem / Solution section
+   Positioning bar — "a tracker, not a prescriber"
    ------------------------------------------------------------------------- */
 
-.prose-section .container { max-width: 760px; }
-.prose-section h2 { margin-bottom: var(--s-5); }
-.prose-section p {
-  font-size: 18px;
-  margin-bottom: var(--s-4);
+.positioning {
+  padding-top: var(--s-6);
+  padding-bottom: var(--s-6);
+  background: var(--bg-warm-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
+.positioning .container { max-width: 760px; text-align: center; }
+.positioning p {
+  font-size: clamp(18px, 2vw, 22px);
+  color: var(--text-secondary);
+  margin: 0;
+}
+.positioning strong { color: var(--indigo); font-weight: 700; }
 
 /* -------------------------------------------------------------------------
    Features — alternating image/text rows
@@ -294,13 +323,13 @@ img.phone-shot {
   padding: var(--s-7) 0;
   border-top: 1px solid var(--border);
 }
-.feature:first-child { border-top: none; padding-top: var(--s-5); }
+.feature:first-child { border-top: none; padding-top: var(--s-6); }
 
-.feature-copy .feature-number {
+.feature-copy .feature-kicker {
   font-size: 13px;
   font-weight: 600;
   letter-spacing: 0.08em;
-  color: var(--accent-bright);
+  color: var(--accent);
   text-transform: uppercase;
   margin-bottom: var(--s-2);
 }
@@ -316,53 +345,142 @@ img.phone-shot {
 .feature-premium {
   display: inline-block;
   vertical-align: middle;
-  font-size: 12px;
+  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.04em;
   text-transform: uppercase;
   color: white;
   background: var(--accent);
-  padding: 4px 10px;
+  padding: 3px 9px;
   border-radius: 999px;
   margin-left: 6px;
 }
 
-/* Small inline qualifier under feature copy (e.g. free-tier limit) */
-.feature-note {
-  margin-top: var(--s-3);
-  font-size: 14px;
-  color: var(--text-tertiary);
-}
-
 .feature-visual { display: flex; justify-content: center; }
 
+/* Closing line: "Built for any injectable" — the GLP-1-only-competitor answer */
+.features-coda {
+  margin-top: var(--s-6);
+  padding-top: var(--s-6);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: clamp(18px, 2vw, 21px);
+  color: var(--text-secondary);
+  max-width: 60ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+.features-coda strong { color: var(--indigo); font-weight: 700; }
+
 /* -------------------------------------------------------------------------
-   Privacy band — a quiet, centered chapter break between features and pricing
+   Stat blocks
    ------------------------------------------------------------------------- */
 
-.privacy-band {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
+.stats { padding-top: var(--s-7); padding-bottom: var(--s-7); }
+.stat-grid {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-4);
 }
-.privacy-band .container {
-  max-width: 600px;
+.stat-grid li {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  padding: var(--s-5);
   text-align: center;
-  padding-top: var(--s-7);
-  padding-bottom: var(--s-7);
 }
-.privacy-band .privacy-icon {
+.stat-figure {
   display: block;
-  margin: 0 auto var(--s-3);
-  color: var(--accent-bright);
+  font-size: clamp(44px, 6vw, 64px);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--accent);
+  margin-bottom: var(--s-2);
 }
-.privacy-band h2 {
-  margin-bottom: var(--s-3);
-}
-.privacy-band p {
+.stat-label {
+  display: block;
+  font-size: 15px;
   color: var(--text-secondary);
-  font-size: 17px;
-  max-width: 48ch;
+  max-width: 22ch;
   margin: 0 auto;
+}
+
+/* -------------------------------------------------------------------------
+   Privacy — the differentiator. The single full-bleed indigo panel.
+   ------------------------------------------------------------------------- */
+
+.privacy-panel {
+  background: var(--indigo);
+  color: #FFFFFF;
+  overflow: hidden;
+}
+/* Magenta-violet glow inside the dark panel */
+.privacy-panel::before {
+  content: "";
+  position: absolute;
+  top: -160px;
+  right: -120px;
+  width: 620px;
+  height: 620px;
+  background: radial-gradient(circle at center,
+              rgba(162, 75, 255, 0.35) 0%,
+              rgba(130, 85, 242, 0.12) 38%,
+              transparent 66%);
+  filter: blur(40px);
+  pointer-events: none;
+  z-index: 0;
+}
+.privacy-panel .container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--s-6);
+  align-items: center;
+}
+.privacy-panel .eyebrow { color: var(--glow); }
+.privacy-panel h2 { color: #FFFFFF; max-width: 18ch; }
+.privacy-panel p {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 18px;
+  max-width: 56ch;
+}
+.privacy-link {
+  display: inline-block;
+  margin-top: var(--s-4);
+  font-weight: 600;
+  color: #FFFFFF;
+}
+.privacy-link:hover { color: var(--glow); }
+
+.privacy-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+}
+.privacy-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--s-3);
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 17px;
+  font-weight: 500;
+}
+.privacy-list li::before {
+  content: "";
+  flex: 0 0 22px;
+  height: 22px;
+  margin-top: 1px;
+  background: var(--glow);
+  -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5 L6.5 12 L13 4.5' stroke='black' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
+          mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5 L6.5 12 L13 4.5' stroke='black' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
 }
 
 /* -------------------------------------------------------------------------
@@ -385,12 +503,13 @@ img.phone-shot {
   position: relative;
   display: flex;
   flex-direction: column;
+  box-shadow: 0 18px 40px -28px rgba(18, 10, 34, 0.25);
 }
 
 .price-card.featured {
-  border-color: rgba(139, 107, 255, 0.5);
-  background: linear-gradient(180deg, rgba(139, 107, 255, 0.06) 0%, var(--bg-elevated) 100%);
-  box-shadow: 0 0 0 1px rgba(139, 107, 255, 0.15), 0 20px 60px -20px rgba(139, 107, 255, 0.25);
+  border-color: rgba(130, 85, 242, 0.5);
+  background: linear-gradient(180deg, rgba(130, 85, 242, 0.07) 0%, var(--bg-elevated) 100%);
+  box-shadow: 0 0 0 1px rgba(130, 85, 242, 0.18), 0 28px 60px -26px rgba(130, 85, 242, 0.35);
 }
 
 .price-card .recommended-pill {
@@ -446,8 +565,7 @@ img.phone-shot {
   color: var(--text-secondary);
   font-size: 16px;
 }
-/* "Everything in Free, plus:" — a summary line, not a feature. Bold, with a
-   + glyph instead of the checkmark, and a divider to set it apart. */
+/* "Everything in Free, plus:" — a summary line, not a feature. */
 .price-card li.price-summary {
   color: var(--text-primary);
   font-weight: 700;
@@ -460,7 +578,7 @@ img.phone-shot {
   background: none;
   -webkit-mask: none;
           mask: none;
-  color: var(--accent-bright);
+  color: var(--accent);
   font-weight: 700;
   font-size: 18px;
   line-height: 1;
@@ -473,7 +591,7 @@ img.phone-shot {
   flex: 0 0 18px;
   height: 18px;
   margin-top: 4px;
-  background: var(--accent-bright);
+  background: var(--accent);
   -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5 L6.5 12 L13 4.5' stroke='black' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
           mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><path d='M3 8.5 L6.5 12 L13 4.5' stroke='black' stroke-width='2.2' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>") center / contain no-repeat;
 }
@@ -524,13 +642,14 @@ img.phone-shot {
   transform: translateX(-50%);
   width: 800px;
   height: 400px;
-  background: radial-gradient(ellipse at center, rgba(139, 107, 255, 0.18) 0%, transparent 60%);
-  filter: blur(30px);
+  background: radial-gradient(ellipse at center, rgba(162, 75, 255, 0.16) 0%, transparent 62%);
+  filter: blur(40px);
   pointer-events: none;
   z-index: 0;
 }
 .final-cta .container { position: relative; z-index: 1; }
 .final-cta h2 { margin-bottom: var(--s-5); }
+.final-cta .app-store-badge { margin: 0 auto; }
 
 /* -------------------------------------------------------------------------
    Section headings (centered variants)
@@ -576,7 +695,7 @@ img.phone-shot {
   font-size: 14px;
 }
 .footer-links a { color: var(--text-secondary); }
-.footer-links a:hover { color: var(--text-primary); }
+.footer-links a:hover { color: var(--indigo); }
 .footer-links .sep { color: var(--text-tertiary); }
 
 .footer-copyright {
@@ -644,7 +763,7 @@ img.phone-shot {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--accent-bright);
+  color: var(--accent);
   margin-top: var(--s-6);
   margin-bottom: var(--s-3);
 }
@@ -700,15 +819,15 @@ img.phone-shot {
 .legal-doc .legal-meta + .legal-meta { margin-bottom: var(--s-5); }
 
 .legal-doc .draft-banner {
-  background: rgba(139, 107, 255, 0.08);
-  border: 1px solid rgba(139, 107, 255, 0.3);
+  background: rgba(130, 85, 242, 0.08);
+  border: 1px solid rgba(130, 85, 242, 0.3);
   border-radius: var(--radius-card);
   padding: var(--s-3) var(--s-4);
   font-size: 14px;
   color: var(--text-secondary);
   margin: var(--s-3) 0 var(--s-5);
 }
-.legal-doc .draft-banner strong { color: var(--accent-bright); }
+.legal-doc .draft-banner strong { color: var(--accent-deep); }
 
 .back-link {
   display: inline-block;
@@ -717,7 +836,7 @@ img.phone-shot {
   color: var(--text-secondary);
   margin: 0 0 var(--s-4) 0;
 }
-.back-link:hover { color: var(--text-primary); }
+.back-link:hover { color: var(--indigo); }
 .legal-doc .back-link + h1 { margin-top: 0; }
 .legal-doc .back-link.bottom { margin-top: var(--s-5); margin-bottom: 0; }
 
@@ -730,6 +849,8 @@ img.phone-shot {
 
   .hero .container { gap: var(--s-8); }
   .hero-copy .subhead { font-size: 20px; }
+
+  .stat-grid { grid-template-columns: repeat(3, 1fr); }
 
   .pricing-grid {
     grid-template-columns: 1fr 1fr;
@@ -758,8 +879,12 @@ img.phone-shot {
   }
   /* Alternate image side on every other feature */
   .feature.reverse .feature-visual { order: -1; }
-
   .feature .phone-shot { max-width: 300px; }
+
+  .privacy-panel .container {
+    grid-template-columns: 1.2fr 0.8fr;
+    gap: var(--s-8);
+  }
 }
 
 /* -------------------------------------------------------------------------
@@ -780,7 +905,7 @@ img.phone-shot {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--accent-bright);
+  outline: 2px solid var(--accent);
   outline-offset: 3px;
   border-radius: 4px;
 }
