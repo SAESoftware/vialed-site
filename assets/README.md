@@ -11,20 +11,40 @@ Place these three 1024×1024 PNGs in this directory:
 - `vialed-logo-tinted.png` — transparent grayscale. Likely unused on the site;
   kept here in case we ever need a monochrome variant.
 
-## Generating favicons (after dropping in `vialed-logo-light.png`)
+## Favicons & app icons
 
-Run from the repo root. `sips` ships with macOS — no install needed.
+The favicon set is generated from the **Vialed app icon** (the neon V on the
+indigo background — the 1024×1024 App Store icon), copied into this repo as
+`assets/icon-source-1024.png`. Source of truth: the Xcode asset catalog at
+`~/peptide-app/.../AppIcon.appiconset/light.png` (copy out read-only; don't
+edit the app repo).
+
+Keep the art **square and edge-filling** — do NOT pre-round the corners or
+make the background transparent. Browsers, Google, and iOS apply their own
+rounded mask; pre-rounding at small sizes produces a muddy double-border, and
+a transparent V vanishes on light browser chrome.
+
+Regenerate (needs Pillow: `python3 -m pip install Pillow`):
 
 ```bash
-cd assets
-sips -z 16 16   vialed-logo-light.png --out favicon-16x16.png
-sips -z 32 32   vialed-logo-light.png --out favicon-32x32.png
-sips -z 180 180 vialed-logo-light.png --out apple-touch-icon.png
+python3 - <<'PY'
+from PIL import Image
+img = Image.open("assets/icon-source-1024.png").convert("RGBA")
+for s, p in [(512,"assets/icon-512.png"), (192,"assets/icon-192.png"),
+             (180,"assets/apple-touch-icon.png"),
+             (32,"assets/favicon-32x32.png"), (16,"assets/favicon-16x16.png")]:
+    img.resize((s, s), Image.LANCZOS).save(p)
+img.save("favicon.ico", format="ICO", sizes=[(32,32),(16,16)])
+PY
 ```
 
-Optional: generate a 512×512 social/OG image (referenced by index.html as
-`assets/og-image.png`). For a true 1200×630 OG card you'll want to
-composite the logo on a background — `sips` alone won't do that well.
+Outputs: `favicon.ico` (root, 16+32), `assets/favicon-16x16.png`,
+`assets/favicon-32x32.png`, `assets/apple-touch-icon.png` (180),
+`assets/icon-192.png`, `assets/icon-512.png`. The 192/512 are referenced by
+`/site.webmanifest`. `<head>` tags live in every page's `<head>`.
+
+The OG/social card is a separate image — `index.html` uses the reconstitution
+marketing PNG (`images/marketing/reconstitution-card.png`), not a favicon.
 
 ## Swapping the logo references
 
