@@ -13,7 +13,7 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="canonical" href="https://vialed.app/newsletter" />
-  <link rel="stylesheet" href="/styles.css?v=3" />
+  <link rel="stylesheet" href="/styles.css?v=4" />
 </head>
 <body>
 
@@ -34,10 +34,10 @@
 <main>
 
 <!-- ============================================================
-     Signup — indigo panel. One of four states is shown at a time:
-     ready (the form, including the typo/error message), sent
-     (check your inbox), confirmed (?confirmed=1, the redirect target
-     of Maropost's double opt-in link).
+     Signup — indigo panel. One of two states is shown at a time:
+     ready (the form, including the typo/error message) and joined.
+     Single opt-in: a successful submit adds the email to the list
+     immediately, with no confirmation email.
      ============================================================ -->
 <section class="privacy-panel newsletter-panel" aria-labelledby="insiders-heading">
   <div class="container">
@@ -67,25 +67,16 @@
         />
         <p class="newsletter-error" id="insiders-error" role="alert" hidden></p>
         <button class="newsletter-button" id="insiders-submit" type="submit">Join Vialed Insiders</button>
-        <p class="newsletter-fine" id="insiders-fine">We&rsquo;ll email you a link to confirm. Unsubscribe any time.</p>
+        <p class="newsletter-fine" id="insiders-fine">Unsubscribe any time.</p>
         <noscript><p class="newsletter-fine">Signing up needs JavaScript. Turn it on for this page, or email <a href="mailto:info@vialed.app">info@vialed.app</a> and we&rsquo;ll add you.</p></noscript>
       </form>
 
-      <div class="newsletter-status" data-for="sent" tabindex="-1" hidden>
-        <span class="newsletter-badge" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-        </span>
-        <h2>Check your inbox</h2>
-        <p>We sent a confirmation link to <strong id="insiders-sent-to">your email</strong>. Tap it to finish joining. You won&rsquo;t get anything until you do.</p>
-        <p class="newsletter-fine">Can&rsquo;t find it? Check your spam or Promotions folder. It comes from info@vialed.app.</p>
-      </div>
-
-      <div class="newsletter-status" data-for="confirmed" tabindex="-1" hidden>
+      <div class="newsletter-status" data-for="joined" tabindex="-1" hidden>
         <span class="newsletter-badge is-confirmed" aria-hidden="true">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
         </span>
         <h2>You&rsquo;re in</h2>
-        <p>Welcome to Vialed Insiders. You&rsquo;ll get tips, guides and early looks at new features at the email you confirmed.</p>
+        <p>Welcome to Vialed Insiders. Tips, guides and early looks at new features will go to <strong id="insiders-joined-as">your email</strong>.</p>
         <a class="privacy-link" href="/">Back to Vialed →</a>
       </div>
 
@@ -154,8 +145,8 @@
   Maropost's embed script, which sets cookies and injects its own markup.
   No API key is involved: Maropost locks the form to vialed.app by the
   request's Referer, so this only works from the live site, not localhost.
-  Double opt-in is on in Maropost; its confirm link redirects back here
-  with ?confirmed=1.
+  Double opt-in is OFF in Maropost (Luke's call, 2026-09-16): a successful
+  submit subscribes the email immediately.
 */
 (function () {
   var ENDPOINT = "https://api.maropost.com/accounts/1584/acquisition/builders/2/subscribe_contact_in_lists";
@@ -166,7 +157,7 @@
   var input = document.getElementById("insiders-email");
   var error = document.getElementById("insiders-error");
   var button = document.getElementById("insiders-submit");
-  var sentTo = document.getElementById("insiders-sent-to");
+  var joinedAs = document.getElementById("insiders-joined-as");
 
   function show(state) {
     body.setAttribute("data-state", state);
@@ -198,11 +189,6 @@
 
   var GENERIC_FAILURE = "Something went wrong on our end. Try again in a minute, or email info@vialed.app and we’ll add you.";
   var INVALID_EMAIL = "That email address doesn’t look complete. Check it and try again.";
-
-  if (new URLSearchParams(window.location.search).get("confirmed") === "1") {
-    show("confirmed");
-    return;
-  }
 
   input.addEventListener("input", function () {
     if (!error.hidden) clearError();
@@ -238,8 +224,8 @@
       .then(function (result) {
         setBusy(false);
         if (result && result.status === true) {
-          sentTo.textContent = email;
-          show("sent");
+          joinedAs.textContent = email;
+          show("joined");
         } else if (result && /invalid email/i.test(result.message || "")) {
           showError(INVALID_EMAIL);
           input.focus();

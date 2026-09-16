@@ -819,9 +819,8 @@ img.phone-shot {
 }
 .privacy-panel .newsletter-lede { font-size: 18px; margin: 0; }
 
-/* The intro stays above every state except "confirmed", where the status
-   block carries its own heading. */
-.newsletter-body[data-state="confirmed"] .newsletter-intro { display: none; }
+/* Once joined, the status block carries its own heading. */
+.newsletter-body[data-state="joined"] .newsletter-intro { display: none; }
 
 .newsletter-form {
   display: flex;
