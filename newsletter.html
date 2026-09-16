@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FAF8F5" />
+  <meta name="color-scheme" content="light" />
+  <title>Join Vialed Insiders — Vialed</title>
+  <meta name="description" content="Join Vialed Insiders, the free Vialed newsletter: tips, guides &amp; early features in your inbox." />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+  <link rel="canonical" href="https://vialed.app/newsletter" />
+  <link rel="stylesheet" href="/styles.css?v=3" />
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/" aria-label="Vialed home">
+      <img src="/assets/vialed-logo-light-web.png" alt="" />
+      <span>Vialed</span>
+    </a>
+    <nav aria-label="Primary">
+      <a href="/#features">Features</a>
+      <a href="/#pricing">Pricing</a>
+      <a href="/#faq">FAQ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================================================
+     Signup — indigo panel. One of four states is shown at a time:
+     ready (the form, including the typo/error message), sent
+     (check your inbox), confirmed (?confirmed=1, the redirect target
+     of Maropost's double opt-in link).
+     ============================================================ -->
+<section class="privacy-panel newsletter-panel" aria-labelledby="insiders-heading">
+  <div class="container">
+    <div class="newsletter-body" id="insiders-state" data-state="ready">
+
+      <div class="newsletter-intro">
+        <span class="eyebrow">Free newsletter</span>
+        <h1 id="insiders-heading">Join Vialed Insiders</h1>
+        <p class="newsletter-lede">Tips, guides &amp; early features in your inbox.</p>
+      </div>
+
+      <form class="newsletter-form" id="insiders-form" data-for="ready" novalidate>
+        <label class="sr-only" for="insiders-email">Email address</label>
+        <input
+          class="newsletter-input"
+          id="insiders-email"
+          name="email"
+          type="email"
+          inputmode="email"
+          autocomplete="email"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+          placeholder="you@example.com"
+          aria-describedby="insiders-error insiders-fine"
+          required
+        />
+        <p class="newsletter-error" id="insiders-error" role="alert" hidden></p>
+        <button class="newsletter-button" id="insiders-submit" type="submit">Join Vialed Insiders</button>
+        <p class="newsletter-fine" id="insiders-fine">We&rsquo;ll email you a link to confirm. Unsubscribe any time.</p>
+        <noscript><p class="newsletter-fine">Signing up needs JavaScript. Turn it on for this page, or email <a href="mailto:info@vialed.app">info@vialed.app</a> and we&rsquo;ll add you.</p></noscript>
+      </form>
+
+      <div class="newsletter-status" data-for="sent" tabindex="-1" hidden>
+        <span class="newsletter-badge" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </span>
+        <h2>Check your inbox</h2>
+        <p>We sent a confirmation link to <strong id="insiders-sent-to">your email</strong>. Tap it to finish joining. You won&rsquo;t get anything until you do.</p>
+        <p class="newsletter-fine">Can&rsquo;t find it? Check your spam or Promotions folder. It comes from info@vialed.app.</p>
+      </div>
+
+      <div class="newsletter-status" data-for="confirmed" tabindex="-1" hidden>
+        <span class="newsletter-badge is-confirmed" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+        </span>
+        <h2>You&rsquo;re in</h2>
+        <p>Welcome to Vialed Insiders. You&rsquo;ll get tips, guides and early looks at new features at the email you confirmed.</p>
+        <a class="privacy-link" href="/">Back to Vialed →</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="newsletter-details" aria-labelledby="insiders-gets">
+  <div class="container">
+    <h2 id="insiders-gets">What you&rsquo;ll get</h2>
+    <ul class="newsletter-gets">
+      <li>
+        <span class="newsletter-tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6.2 2.2 2.2L9.5 3.6"/></svg></span>
+        <span><strong>Guides</strong>Getting more from schedules, cycles and the reconstitution calculator.</span>
+      </li>
+      <li>
+        <span class="newsletter-tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6.2 2.2 2.2L9.5 3.6"/></svg></span>
+        <span><strong>Early features</strong>See what&rsquo;s coming before it ships.</span>
+      </li>
+      <li>
+        <span class="newsletter-tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m2.5 6.2 2.2 2.2L9.5 3.6"/></svg></span>
+        <span><strong>Tips</strong>Small things that make daily tracking faster.</span>
+      </li>
+    </ul>
+    <p class="newsletter-privacy">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+      <span>Your email is used only for this newsletter. It&rsquo;s never linked to your Vialed data, which stays on your iPhone and in your own iCloud. <a href="/privacy.html">Privacy</a></span>
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-brand">
+      <img src="/assets/vialed-logo-light-web.png" alt="" />
+      <span>A product of SAE Software LLC</span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy.html">Privacy</a>
+      <span class="sep">·</span>
+      <a href="/terms.html">Terms</a>
+      <span class="sep">·</span>
+      <a href="/support.html">Support</a>
+      <span class="sep">·</span>
+      <a href="mailto:hello@vialed.app">hello@vialed.app</a>
+    </div>
+  </div>
+</footer>
+
+<div class="footer-copyright">
+  <div class="container">© 2026 SAE Software LLC</div>
+</div>
+
+<aside class="medical-disclaimer" aria-label="Medical disclaimer summary">
+  <div class="container">
+    <p>Vialed is a tracking and reminder tool for injectable medications. It is not a medical device. It does not provide medical advice — always consult a qualified healthcare professional. <a href="/disclaimer.html">Read full medical disclaimer →</a></p>
+  </div>
+</aside>
+
+<script>
+/*
+  Posts straight to the Maropost acquisition form "Join Vialed Insiders"
+  (account 1584, builder 2, list "Vialed Insiders"). This replaces
+  Maropost's embed script, which sets cookies and injects its own markup.
+  No API key is involved: Maropost locks the form to vialed.app by the
+  request's Referer, so this only works from the live site, not localhost.
+  Double opt-in is on in Maropost; its confirm link redirects back here
+  with ?confirmed=1.
+*/
+(function () {
+  var ENDPOINT = "https://api.maropost.com/accounts/1584/acquisition/builders/2/subscribe_contact_in_lists";
+  var EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+  var body = document.getElementById("insiders-state");
+  var form = document.getElementById("insiders-form");
+  var input = document.getElementById("insiders-email");
+  var error = document.getElementById("insiders-error");
+  var button = document.getElementById("insiders-submit");
+  var sentTo = document.getElementById("insiders-sent-to");
+
+  function show(state) {
+    body.setAttribute("data-state", state);
+    body.querySelectorAll("[data-for]").forEach(function (el) {
+      el.hidden = el.getAttribute("data-for") !== state;
+    });
+    if (state !== "ready") {
+      var panel = body.querySelector('[data-for="' + state + '"]');
+      if (panel) panel.focus();
+    }
+  }
+
+  function showError(message) {
+    error.textContent = message;
+    error.hidden = false;
+    input.setAttribute("aria-invalid", "true");
+  }
+
+  function clearError() {
+    error.hidden = true;
+    error.textContent = "";
+    input.removeAttribute("aria-invalid");
+  }
+
+  function setBusy(busy) {
+    button.disabled = busy;
+    button.textContent = busy ? "Joining…" : "Join Vialed Insiders";
+  }
+
+  var GENERIC_FAILURE = "Something went wrong on our end. Try again in a minute, or email info@vialed.app and we’ll add you.";
+  var INVALID_EMAIL = "That email address doesn’t look complete. Check it and try again.";
+
+  if (new URLSearchParams(window.location.search).get("confirmed") === "1") {
+    show("confirmed");
+    return;
+  }
+
+  input.addEventListener("input", function () {
+    if (!error.hidden) clearError();
+  });
+
+  form.addEventListener("submit", function (event) {
+    event.preventDefault();
+    var email = input.value.trim();
+
+    if (!EMAIL_PATTERN.test(email)) {
+      showError(INVALID_EMAIL);
+      input.focus();
+      return;
+    }
+
+    clearError();
+    setBusy(true);
+
+    // No Content-Type header, matching Maropost's own script: the request
+    // stays a simple CORS request with no preflight.
+    fetch(ENDPOINT, {
+      method: "POST",
+      headers: { "Accept": "text/javascript" },
+      body: JSON.stringify({
+        data: { email: email },
+        domain: window.location.host,
+        "g-recaptcha-response": ""
+      })
+    })
+      .then(function (response) {
+        return response.json().catch(function () { return {}; });
+      })
+      .then(function (result) {
+        setBusy(false);
+        if (result && result.status === true) {
+          sentTo.textContent = email;
+          show("sent");
+        } else if (result && /invalid email/i.test(result.message || "")) {
+          showError(INVALID_EMAIL);
+          input.focus();
+        } else {
+          showError(GENERIC_FAILURE);
+        }
+      })
+      .catch(function () {
+        setBusy(false);
+        showError(GENERIC_FAILURE);
+      });
+  });
+})();
+</script>
+
+</body>
+</html>

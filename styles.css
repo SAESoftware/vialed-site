@@ -790,6 +790,184 @@ img.phone-shot {
 }
 
 /* -------------------------------------------------------------------------
+   Newsletter (/newsletter — Join Vialed Insiders)
+   Reuses the indigo .privacy-panel band from the home page for the signup,
+   then a light details section below it.
+   ------------------------------------------------------------------------- */
+
+.newsletter-panel {
+  padding-top: var(--s-7);
+  padding-bottom: var(--s-7);
+}
+.newsletter-panel .container { display: block; }
+/* State blocks set display:flex, which would otherwise beat [hidden]. */
+.newsletter-panel [hidden] { display: none !important; }
+
+.newsletter-body {
+  max-width: 560px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+
+.newsletter-intro .eyebrow { margin-bottom: var(--s-2); }
+.newsletter-intro h1 {
+  color: #FFFFFF;
+  font-size: clamp(36px, 6vw, 56px);
+  margin-bottom: var(--s-3);
+  text-wrap: balance;
+}
+.privacy-panel .newsletter-lede { font-size: 18px; margin: 0; }
+
+/* The intro stays above every state except "confirmed", where the status
+   block carries its own heading. */
+.newsletter-body[data-state="confirmed"] .newsletter-intro { display: none; }
+
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.newsletter-input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  background: rgba(255, 255, 255, 0.08);
+  color: #FFFFFF;
+  font: inherit;
+  font-size: 17px; /* ≥16px so iOS Safari doesn't zoom on focus */
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.newsletter-input::placeholder { color: rgba(255, 255, 255, 0.5); }
+.newsletter-input:focus {
+  outline: none;
+  border-color: var(--glow);
+  box-shadow: 0 0 0 3px rgba(162, 75, 255, 0.35);
+}
+.newsletter-input[aria-invalid="true"] {
+  border-color: #FF7A8C;
+  box-shadow: 0 0 0 3px rgba(255, 122, 140, 0.18);
+}
+
+.privacy-panel .newsletter-error {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: #FF9AA8;
+}
+
+.newsletter-button {
+  height: 52px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #FFFFFF;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+.newsletter-button:hover { background: var(--accent-deep); }
+.newsletter-button:disabled { opacity: 0.7; cursor: progress; }
+.newsletter-button:focus-visible { outline-color: #FFFFFF; }
+
+.privacy-panel .newsletter-fine {
+  margin: 0;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.55);
+}
+.privacy-panel .newsletter-fine a { color: #C9B4FF; }
+
+.newsletter-status {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.newsletter-status:focus { outline: none; }
+.newsletter-status h2 { margin: var(--s-1) 0 0; }
+.newsletter-status .privacy-link { margin-top: var(--s-2); }
+.privacy-panel .newsletter-status p { margin: 0; }
+.privacy-panel .newsletter-status strong { color: #FFFFFF; font-weight: 600; overflow-wrap: anywhere; }
+
+.newsletter-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 255, 255, 0.10);
+  color: #C9B4FF;
+}
+.newsletter-badge svg { width: 24px; height: 24px; }
+.newsletter-badge.is-confirmed {
+  background: rgba(92, 214, 160, 0.16);
+  color: #6FE0AE;
+}
+
+.newsletter-details {
+  padding-top: var(--s-6);
+  padding-bottom: var(--s-6);
+}
+.newsletter-details .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-4);
+}
+.newsletter-details h2 {
+  font-size: clamp(22px, 2.4vw, 28px);
+  margin: 0;
+}
+
+.newsletter-gets {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--s-3);
+  max-width: 560px;
+}
+.newsletter-gets li {
+  display: grid;
+  grid-template-columns: 24px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+.newsletter-gets strong {
+  display: block;
+  color: var(--text-primary);
+  font-weight: 600;
+}
+.newsletter-tick {
+  width: 24px;
+  height: 24px;
+  margin-top: 1px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(130, 85, 242, 0.12);
+  color: var(--accent);
+}
+.newsletter-tick svg { width: 12px; height: 12px; }
+
+.newsletter-privacy {
+  display: grid;
+  grid-template-columns: 18px 1fr;
+  gap: 10px;
+  max-width: 560px;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.newsletter-privacy svg { width: 16px; height: 16px; margin-top: 3px; color: var(--text-tertiary); }
+
+/* -------------------------------------------------------------------------
    Stub pages (privacy / terms / support)
    ------------------------------------------------------------------------- */
 
