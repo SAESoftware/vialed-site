@@ -33,7 +33,7 @@
   <link rel="manifest" href="/site.webmanifest" />
 
   <link rel="canonical" href="https://vialed.app/" />
-  <link rel="stylesheet" href="styles.css?v=2" />
+  <link rel="stylesheet" href="styles.css?v=5" />
 </head>
 <body>
 
@@ -74,7 +74,7 @@
       </div>
       <ul class="trust-chips" aria-label="What Vialed does not do with your data">
         <li>No account required</li>
-        <li>No trackers, no ads</li>
+        <li>No ads, no analytics</li>
         <li>Your data stays on your device</li>
       </ul>
     </div>
@@ -90,6 +90,55 @@
 <section class="positioning" aria-label="What Vialed is">
   <div class="container">
     <p><strong>A tracker, not a prescriber.</strong> Vialed records what you did with precision. It doesn&rsquo;t give medical advice or tell you what to take next — that&rsquo;s between you and your clinician.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     Vialed Insiders — signup band, top copy (duplicate of the band
+     between Pricing and FAQ; ids suffixed "top")
+     ============================================================ -->
+<section class="insiders-band" aria-labelledby="insiders-top-heading">
+  <div class="container" data-insiders data-state="ready">
+    <div class="insiders-band-copy">
+      <span class="insiders-band-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v.3l-9 5.6-9-5.6v-.3Zm0 2.65V17.5A2.5 2.5 0 0 0 5.5 20h13a2.5 2.5 0 0 0 2.5-2.5V9.15l-8.47 5.27a1 1 0 0 1-1.06 0L3 9.15Z"/></svg>
+      </span>
+      <div>
+        <span class="eyebrow">Free newsletter</span>
+        <h2 id="insiders-top-heading">Join Vialed Insiders</h2>
+        <p>Tips, guides &amp; early features in your inbox.</p>
+      </div>
+    </div>
+
+    <form class="insiders-band-form" data-insiders-form data-for="ready" novalidate>
+      <div class="insiders-band-row">
+        <label class="sr-only" for="insiders-top-email">Email address</label>
+        <input
+          id="insiders-top-email"
+          name="email"
+          type="email"
+          inputmode="email"
+          autocomplete="email"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+          placeholder="you@example.com"
+          aria-describedby="insiders-top-error"
+          required
+        />
+        <button type="submit">Join</button>
+      </div>
+      <p class="insiders-band-error" id="insiders-top-error" data-insiders-error role="alert" hidden></p>
+      <p class="insiders-band-fine">Unsubscribe any time. <a href="/privacy.html">Privacy</a></p>
+      <noscript><p class="insiders-band-fine">Signing up needs JavaScript. <a href="/newsletter">Open the signup page</a> or email info@vialed.app.</p></noscript>
+    </form>
+
+    <div class="insiders-band-joined" data-for="joined" tabindex="-1" hidden>
+      <span class="insiders-band-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+      </span>
+      <p><strong>You&rsquo;re in.</strong> Tips, guides and early looks at new features will go to <strong data-insiders-joined-as>your email</strong>.</p>
+    </div>
   </div>
 </section>
 
@@ -226,7 +275,7 @@
     </div>
     <ul class="privacy-list">
       <li>No account, ever</li>
-      <li>No analytics, no trackers, no ads</li>
+      <li>No analytics, no ads</li>
       <li>On-device storage, optional private iCloud backup</li>
       <li>Export everything as CSV, free, anytime</li>
     </ul>
@@ -275,6 +324,55 @@
         </ul>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Vialed Insiders — newsletter signup band (shared logic in
+     insiders-signup.js; same Maropost form as /newsletter)
+     ============================================================ -->
+<section class="insiders-band" aria-labelledby="insiders-band-heading">
+  <div class="container" data-insiders data-state="ready">
+    <div class="insiders-band-copy">
+      <span class="insiders-band-icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 6.5A2.5 2.5 0 0 1 5.5 4h13A2.5 2.5 0 0 1 21 6.5v.3l-9 5.6-9-5.6v-.3Zm0 2.65V17.5A2.5 2.5 0 0 0 5.5 20h13a2.5 2.5 0 0 0 2.5-2.5V9.15l-8.47 5.27a1 1 0 0 1-1.06 0L3 9.15Z"/></svg>
+      </span>
+      <div>
+        <span class="eyebrow">Free newsletter</span>
+        <h2 id="insiders-band-heading">Join Vialed Insiders</h2>
+        <p>Tips, guides &amp; early features in your inbox.</p>
+      </div>
+    </div>
+
+    <form class="insiders-band-form" data-insiders-form data-for="ready" novalidate>
+      <div class="insiders-band-row">
+        <label class="sr-only" for="insiders-band-email">Email address</label>
+        <input
+          id="insiders-band-email"
+          name="email"
+          type="email"
+          inputmode="email"
+          autocomplete="email"
+          autocapitalize="off"
+          autocorrect="off"
+          spellcheck="false"
+          placeholder="you@example.com"
+          aria-describedby="insiders-band-error"
+          required
+        />
+        <button type="submit">Join</button>
+      </div>
+      <p class="insiders-band-error" id="insiders-band-error" data-insiders-error role="alert" hidden></p>
+      <p class="insiders-band-fine">Unsubscribe any time. <a href="/privacy.html">Privacy</a></p>
+      <noscript><p class="insiders-band-fine">Signing up needs JavaScript. <a href="/newsletter">Open the signup page</a> or email info@vialed.app.</p></noscript>
+    </form>
+
+    <div class="insiders-band-joined" data-for="joined" tabindex="-1" hidden>
+      <span class="insiders-band-check" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+      </span>
+      <p><strong>You&rsquo;re in.</strong> Tips, guides and early looks at new features will go to <strong data-insiders-joined-as>your email</strong>.</p>
     </div>
   </div>
 </section>
@@ -359,6 +457,8 @@
       <span class="sep">·</span>
       <a href="/support.html">Support</a>
       <span class="sep">·</span>
+      <a href="/newsletter">Vialed Insiders</a>
+      <span class="sep">·</span>
       <a href="mailto:hello@vialed.app">hello@vialed.app</a>
     </div>
   </div>
@@ -374,5 +474,6 @@
   </div>
 </aside>
 
+<script src="/insiders-signup.js" defer></script>
 </body>
 </html>

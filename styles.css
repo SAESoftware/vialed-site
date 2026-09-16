@@ -967,6 +967,179 @@ img.phone-shot {
 .newsletter-privacy svg { width: 16px; height: 16px; margin-top: 3px; color: var(--text-tertiary); }
 
 /* -------------------------------------------------------------------------
+   Home — Vialed Insiders band (between Pricing and FAQ)
+   Warm light band, deliberately not dark, so it doesn't compete with the
+   indigo Privacy panel above Pricing.
+   ------------------------------------------------------------------------- */
+
+.insiders-band {
+  padding-top: var(--s-6);
+  padding-bottom: var(--s-6);
+  background: var(--bg-warm-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.insiders-band .container {
+  display: grid;
+  gap: var(--s-4);
+  align-items: center;
+}
+.insiders-band [hidden] { display: none !important; }
+
+.insiders-band-copy {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: var(--s-3);
+  align-items: start;
+}
+.insiders-band-icon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(130, 85, 242, 0.14);
+  color: var(--accent);
+}
+.insiders-band-icon svg { width: 22px; height: 22px; }
+.insiders-band .eyebrow { margin-bottom: var(--s-1); font-size: 12px; }
+.insiders-band h2 { font-size: clamp(24px, 2.6vw, 30px); margin: 0 0 6px; }
+.insiders-band-copy p { margin: 0; font-size: 16px; }
+
+.insiders-band-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.insiders-band-row {
+  display: grid;
+  gap: 10px;
+}
+.insiders-band-form input {
+  width: 100%;
+  height: 52px;
+  padding: 0 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border-strong);
+  background: var(--bg-elevated);
+  color: var(--text-primary);
+  font: inherit;
+  font-size: 17px; /* ≥16px so iOS Safari doesn't zoom on focus */
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+.insiders-band-form input::placeholder { color: var(--text-tertiary); }
+.insiders-band-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(130, 85, 242, 0.22);
+}
+.insiders-band-form input[aria-invalid="true"] {
+  border-color: #C0263D;
+  box-shadow: 0 0 0 3px rgba(192, 38, 61, 0.12);
+}
+.insiders-band-form button {
+  height: 52px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--accent);
+  color: #FFFFFF;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 600;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 120ms ease;
+}
+.insiders-band-form button:hover { background: var(--accent-deep); }
+.insiders-band-form button:disabled { opacity: 0.7; cursor: progress; }
+
+.insiders-band-error {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #C0263D;
+}
+.insiders-band-fine {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-tertiary);
+}
+
+.insiders-band-joined {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+  align-items: start;
+}
+.insiders-band-joined:focus { outline: none; }
+.insiders-band-joined p { margin: 0; font-size: 16px; }
+.insiders-band-joined strong { color: var(--text-primary); font-weight: 600; overflow-wrap: anywhere; }
+.insiders-band-check {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(46, 154, 106, 0.14);
+  color: #2E9A6A;
+}
+.insiders-band-check svg { width: 16px; height: 16px; }
+
+/* Desktop: the band becomes a large outlined card on the page background
+   (echoing the app's violet-outlined Insiders card), with bigger type, so
+   it reads as a real section rather than a strip — and doesn't merge with
+   the warm positioning bar it sits under. Phone keeps the warm band. */
+@media (min-width: 900px) {
+  .insiders-band {
+    padding-top: var(--s-7);
+    padding-bottom: var(--s-7);
+    background: var(--bg-primary);
+    border: 0;
+  }
+  /* Between Pricing and FAQ both neighbours already carry 96px padding. */
+  #pricing + .insiders-band {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+  .insiders-band .container {
+    width: min(1080px, calc(100% - 2 * var(--gutter)));
+    max-width: none;
+    padding: var(--s-6) 56px;
+    grid-template-columns: 1fr 400px;
+    gap: var(--s-6);
+    background: var(--bg-elevated);
+    border: 1.5px solid rgba(130, 85, 242, 0.45);
+    border-radius: 24px;
+    box-shadow:
+      0 0 0 6px rgba(130, 85, 242, 0.05),
+      0 30px 60px -36px rgba(18, 10, 34, 0.28);
+  }
+  .insiders-band-copy {
+    grid-template-columns: 64px 1fr;
+    gap: var(--s-4);
+  }
+  .insiders-band-icon { width: 64px; height: 64px; }
+  .insiders-band-icon svg { width: 28px; height: 28px; }
+  .insiders-band .eyebrow { font-size: 13px; margin-bottom: var(--s-2); }
+  .insiders-band h2 { font-size: clamp(32px, 2.8vw, 40px); margin-bottom: var(--s-2); }
+  .insiders-band-copy p { font-size: 19px; }
+
+  .insiders-band-form { gap: 12px; }
+  .insiders-band-row { grid-template-columns: 1fr auto; gap: 12px; }
+  .insiders-band-form input,
+  .insiders-band-form button { height: 58px; font-size: 18px; }
+  .insiders-band-form button { padding: 0 32px; }
+  .insiders-band-error { font-size: 15px; }
+  .insiders-band-fine { font-size: 14px; }
+
+  .insiders-band-joined { grid-template-columns: 40px 1fr; gap: 16px; }
+  .insiders-band-check { width: 40px; height: 40px; }
+  .insiders-band-check svg { width: 20px; height: 20px; }
+  .insiders-band-joined p { font-size: 18px; }
+}
+
+/* -------------------------------------------------------------------------
    Stub pages (privacy / terms / support)
    ------------------------------------------------------------------------- */
 
