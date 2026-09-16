@@ -178,6 +178,22 @@ section {
   font-weight: 500;
 }
 .site-header nav a:hover { color: var(--indigo); }
+.site-header nav { white-space: nowrap; }
+.site-header .container { gap: var(--s-3); }
+.site-header .brand { flex-shrink: 0; }
+
+/* Phones: the home page has four nav links (the other pages three), which
+   wrapped "FAQ" onto a second line at iPhone width. Tighten the links in
+   steps; below 360px (iPhone SE 1st gen) the logo stands without the word. */
+@media (max-width: 480px) {
+  .site-header nav a { margin-left: 14px; font-size: 14px; }
+}
+@media (max-width: 389px) {
+  .site-header nav a { margin-left: 10px; font-size: 13px; }
+}
+@media (max-width: 359px) {
+  .site-header .brand span { display: none; }
+}
 
 /* -------------------------------------------------------------------------
    Buttons / App Store badge / CTAs
